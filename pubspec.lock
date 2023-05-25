@@ -711,10 +711,10 @@ packages:
     dependency: "direct main"
     description:
       name: thingsboard_pe_client
-      sha256: "360612c1bb1af9b1d15bd91d91b2e7c3c010a742afe8c03a2834d5e0be4fb73f"
+      sha256: "611f3cf01222920bbeea182de54e04f7405a634d9936057bc22370047f21e7c1"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.7"
   typed_data:
     dependency: transitive
     description:
