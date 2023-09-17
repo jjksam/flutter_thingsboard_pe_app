@@ -214,8 +214,8 @@ class _DashboardState extends TbContextState<Dashboard> {
     }
     var webMessage = WebMessage(data: jsonEncode(windowMessage));
     if (!UniversalPlatform.isWeb) {
-      await controller!
-          .postWebMessage(message: webMessage, targetOrigin: WebUri.uri(Uri.parse('*')));
+      await controller!.postWebMessage(
+          message: webMessage, targetOrigin: WebUri.uri(Uri.parse('*')));
     }
   }
 
@@ -287,7 +287,8 @@ class _DashboardState extends TbContextState<Dashboard> {
                       ? Center(child: Text('Not implemented!'))
                       : InAppWebView(
                           key: webViewKey,
-                          initialUrlRequest: URLRequest(url: WebUri.uri(_initialUrl)),
+                          initialUrlRequest:
+                              URLRequest(url: WebUri.uri(_initialUrl)),
                           initialOptions: options,
                           onWebViewCreated: (webViewController) {
                             log.debug("onWebViewCreated");
