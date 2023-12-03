@@ -3,7 +3,7 @@ import 'package:universal_platform/universal_platform.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+// import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:thingsboard_app/config/routes/router.dart';
 import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/modules/dashboard/main_dashboard_page.dart';
@@ -21,7 +21,7 @@ void main() async {
 //  await Permission.storage.request();
 
   if (UniversalPlatform.isAndroid) {
-    await InAppWebViewController.setWebContentsDebuggingEnabled(true);
+    // await InAppWebViewController.setWebContentsDebuggingEnabled(true);
   }
 
   runApp(ThingsboardApp());
@@ -97,7 +97,7 @@ class ThingsboardAppState extends State<ThingsboardApp>
     return _mainPageViewController.index == 1;
   }
 
-  Future<bool> _openMain({bool animate: true}) async {
+  Future<bool> _openMain({bool animate = true}) async {
     var res = await _mainPageViewController.open(0, animate: animate);
     if (res) {
       await _mainDashboardPageController.deactivateDashboard();
@@ -105,21 +105,21 @@ class ThingsboardAppState extends State<ThingsboardApp>
     return res;
   }
 
-  Future<bool> _closeMain({bool animate: true}) async {
+  Future<bool> _closeMain({bool animate = true}) async {
     if (!isDashboardOpen()) {
       await _mainDashboardPageController.activateDashboard();
     }
     return _mainPageViewController.close(0, animate: animate);
   }
 
-  Future<bool> _openDashboard({bool animate: true}) async {
+  Future<bool> _openDashboard({bool animate = true}) async {
     if (!isDashboardOpen()) {
       _mainDashboardPageController.activateDashboard();
     }
     return _mainPageViewController.open(1, animate: animate);
   }
 
-  Future<bool> _closeDashboard({bool animate: true}) async {
+  Future<bool> _closeDashboard({bool animate = true}) async {
     var res = await _mainPageViewController.close(1, animate: animate);
     if (res) {
       _mainDashboardPageController.deactivateDashboard();

@@ -47,10 +47,7 @@ class _TermsOfUseState extends TbPageState<TermsOfUse> {
                         var termsOfUse = jsonDecode(snapshot.data ?? '');
                         dom.Document document =
                             htmlparser.parse(termsOfUse ?? '');
-                        return Html.fromDom(
-                          document: document,
-                          extensions: [],
-                        );
+                        return Html.fromDom(document: document);
                       } else {
                         return Center(
                             child: TbProgressIndicator(

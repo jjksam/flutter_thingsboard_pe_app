@@ -150,7 +150,7 @@ class _DashboardState extends TbContextState<Dashboard> {
           var controller = await _controller.future;
           await controller.postWebMessage(
               message: WebMessage(data: jsonEncode(windowMessage)),
-              targetOrigin: WebUri.uri(Uri.parse('*')));
+              targetOrigin: Uri.parse('*'));
         }
       }
     }
@@ -214,8 +214,8 @@ class _DashboardState extends TbContextState<Dashboard> {
     }
     var webMessage = WebMessage(data: jsonEncode(windowMessage));
     if (!UniversalPlatform.isWeb) {
-      await controller!.postWebMessage(
-          message: webMessage, targetOrigin: WebUri.uri(Uri.parse('*')));
+      await controller!
+          .postWebMessage(message: webMessage, targetOrigin: Uri.parse('*'));
     }
   }
 
@@ -224,7 +224,7 @@ class _DashboardState extends TbContextState<Dashboard> {
     var windowMessage = <String, dynamic>{'type': 'toggleDashboardLayout'};
     var webMessage = WebMessage(data: jsonEncode(windowMessage));
     await controller.postWebMessage(
-        message: webMessage, targetOrigin: WebUri.uri(Uri.parse('*')));
+        message: webMessage, targetOrigin: Uri.parse('*'));
   }
 
   Future<void> tryLocalNavigation(String? path) async {
@@ -265,6 +265,7 @@ class _DashboardState extends TbContextState<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: deprecated_member_use
     return WillPopScope(
         onWillPop: () async {
           if (widget._home == true && !tbContext.isHomePage()) {
@@ -287,8 +288,7 @@ class _DashboardState extends TbContextState<Dashboard> {
                       ? Center(child: Text('Not implemented!'))
                       : InAppWebView(
                           key: webViewKey,
-                          initialUrlRequest:
-                              URLRequest(url: WebUri.uri(_initialUrl)),
+                          initialUrlRequest: URLRequest(url: _initialUrl),
                           initialOptions: options,
                           onWebViewCreated: (webViewController) {
                             log.debug("onWebViewCreated");
@@ -421,8 +421,7 @@ class _DashboardState extends TbContextState<Dashboard> {
                           if (!loading && active) {
                             return SizedBox.shrink();
                           } else {
-                            var data = MediaQueryData.fromWindow(
-                                WidgetsBinding.instance.window);
+                            var data = MediaQuery.of(context);
                             var bottomPadding = data.padding.top;
                             if (widget._home != true) {
                               bottomPadding += kToolbarHeight;

@@ -258,8 +258,7 @@ class _LoginPageState extends TbPageState<LoginPage> {
               valueListenable: _isLoginNotifier,
               builder: (BuildContext context, bool loading, child) {
                 if (loading) {
-                  var data =
-                      MediaQueryData.fromWindow(WidgetsBinding.instance.window);
+                  var data = MediaQuery.of(context);
                   var bottomPadding = data.padding.top;
                   bottomPadding += kToolbarHeight;
                   return SizedBox.expand(

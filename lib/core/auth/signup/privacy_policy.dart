@@ -47,10 +47,7 @@ class _PrivacyPolicyState extends TbPageState<PrivacyPolicy> {
                         var privacyPolicy = jsonDecode(snapshot.data ?? '');
                         dom.Document document =
                             htmlparser.parse(privacyPolicy ?? '');
-                        return Html.fromDom(
-                          document: document,
-                          extensions: [],
-                        );
+                        return Html.fromDom(document: document);
                       } else {
                         return Center(
                             child: TbProgressIndicator(
